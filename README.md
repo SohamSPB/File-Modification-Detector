@@ -6,6 +6,7 @@
 
 ## Warnings
 - This program is currently under development. Provides no guarantee. You are responsible for safety of your own data.
+- Do not compare large md5sums text files(currently working on it)
 - Rename function renames batch files (beta)  
 	**(Always backup before performing this operation**  
 	**Use proper syntax)**
