@@ -1,5 +1,7 @@
 # File-Modification-Detector
 
+[View Wiki](https://github.com/SohamSPB/File-Modification-Detector/wiki)
+
 ## Installation
 - Directly excecute script in terminal in folder you want to monitor
 - Some functions require `sudo`
