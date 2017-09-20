@@ -11,7 +11,7 @@
 - Do not compare large md5sums text files(currently working on it)
 - Rename function renames batch files (beta)  
 	**(Always backup before performing this operation**  
-	**Use proper syntax)**
+	**Use proper [syntax](https://github.com/SohamSPB/File-Modification-Detector/wiki/Syntax))**
 
 ## Options/Functions
 1. Generates list of md5sums
