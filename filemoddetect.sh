@@ -15,7 +15,7 @@ function about
 		echo -e "\e[0K\r" "\e[38;5;${i}m\t\t\tWritten by Soham Bagayatkar\e[0m";
 		echo -en "\e[1A";
 		sleep .05;
-	 done; 
+	 done;
 	echo
 	echo -en "\e[1A";
 	echo -e "\e[0K\r";
@@ -23,7 +23,7 @@ function about
 function usage
 {
 cat << EOF
-Usage: 
+Usage:
   filemoddetect [OPTION...] [FILE...] - File Modification Detector
 
 Help Options:
@@ -119,7 +119,7 @@ if [ $colmode = true ]; then
 	lblue='\033[1;34m';		purple='\033[0;35m';		lpurple='\033[1;35m'
 	cyan='\033[0;36m';		lcyan='\033[1;36m';		lgray='\033[0;37m'
 	white='\033[1;37m';
-	
+
 	fg_black=$(tput setaf 0);	fg_red=$(tput setaf 1);		fg_green=$(tput setaf 2)
 	fg_yellow=$(tput setaf 3);	fg_blue=$(tput setaf 4);	fg_magenta=$(tput setaf 5)
 	fg_cyan=$(tput setaf 6);	fg_white=$(tput setaf 7)
@@ -130,7 +130,7 @@ if [ $colmode = true ]; then
 fi
 nc='\033[0m' # No Color
 revcol=$(tput rev)
-	
+
 blink=$(tput blink);		bold=$(tput bold);		dim=$(tput dim);	nc=$(tput sgr0)
 defforcol=$(tput setaf sgr9);	defbackcol=$(tput setab sgr9)
 
@@ -209,7 +209,7 @@ if [ "$1" != "" ]; then
 		-e | --exclude=* )
 			if [[ $1 = "--exclude="* ]]; then
 				te=$1; te=${te:10}
-				excludefile+=(`readlink -f "$te"`); excludeon=true				
+				excludefile+=(`readlink -f "$te"`); excludeon=true
 				echo -e "\nExcluding file/directory: ${excludefile[-1]}\n"
 			else
 				if [[ -z $2 ]]; then
@@ -256,7 +256,7 @@ if [ "$1" != "" ]; then
 	 fi
 	done
 fi
-unset $IFS #or IFS=$' \t\n' 
+unset $IFS #or IFS=$' \t\n'
 
 if [[ $excludeon = true ]]; then
 	unset excludefile[0]
@@ -272,7 +272,7 @@ printf "\nCurrent directory $filepath\n\n"
 
 if [[ $logmode = true ]]; then
 	logat=$(date +"%m-%d-%y--%T")
-	echo -e "${logat}\t\tCurrent directory $filepath" >> $logname 
+	echo -e "${logat}\t\tCurrent directory $filepath" >> $logname
 fi
 
 if [ $optionerror = true ]; then
@@ -282,7 +282,7 @@ fi
 if [ $colmode = false ]; then
 	black='';		dgray='';		red='';	lred='';		green='';		lgreen='';	brownorange='';	yellow='';		blue='';
 	lblue='';		purple='';	lpurple='';	cyan='';		lcyan='';		lgray=''		white='';
-	
+
 	fg_black='';	fg_red='';		fg_green=''
 	fg_yellow='';	fg_blue='';	fg_magenta=''
 	fg_cyan='';	fg_white=''
@@ -295,7 +295,7 @@ fi
 #check size
 if [[ -d $filepath ]]; then
 	if [ -r $filepath ]; then
-		if [[ $recmode == true ]]; then	
+		if [[ $recmode == true ]]; then
 			CHECK="`du -hs $filepath | cut -f1`"
 		else
 			CHECK="`find $filepath -maxdepth 1 -type f -printf "%s + " | dc -e0 -f- -ep`"
@@ -340,7 +340,7 @@ if [[ $excludeon = true && $recmode == false ]]; then	#if this condition then ma
 			fi
 		fi
 	fi
-	
+
 else
 	if [[ $excludeon = true ]]; then
 		if (( ${#excludefile[@]} < 2 )); then
@@ -380,10 +380,10 @@ fi
 #	echo -en "${green}${bold}${#files[@]}$nc files found ~ $lblue$bold$CHECK$nc & ${bold}${yellow}${directs}${nc} directories";
 if [[ "${directs}" == "0" && "${#files[@]}" == "0" ]]; then
 	echo -e "Nothing found!";
-	
+
 	if [[ $logmode = true ]]; then
 		logat=$(date +"%m-%d-%y--%T")
-		echo -e "${logat}\t\tNothing found!" >> $logname 
+		echo -e "${logat}\t\tNothing found!" >> $logname
 	fi
 	exit
 else
@@ -411,10 +411,10 @@ if [ $excludeon = true ]; then
 				unset $IFS #or IFS=$' \t\n'
 			else
 				echo -e "Directory '$exc' has not given ${brownorange}read${nc} permission! (Try using sudo)"
-				
+
 				if [[ $logmode = true ]]; then
 					logat=$(date +"%m-%d-%y--%T")
-					echo -e "${logat}\t\tDirectory '$exc' has not given read permission! (Try using sudo)" >> $logname 
+					echo -e "${logat}\t\tDirectory '$exc' has not given read permission! (Try using sudo)" >> $logname
 				fi
 				exit
 			fi
@@ -428,7 +428,7 @@ if [ $excludeon = true ]; then
 				echo -e "File '$exc' has not given ${brownorange}read${nc} permission! (Try using sudo)"
 				if [[ $logmode = true ]]; then
 					logat=$(date +"%m-%d-%y--%T")
-					echo -e "${logat}\t\tFile '$exc' has not given read permission! (Try using sudo)}" >> $logname 
+					echo -e "${logat}\t\tFile '$exc' has not given read permission! (Try using sudo)}" >> $logname
 				fi
 				exit
 			fi
@@ -440,7 +440,7 @@ if [ $excludeon = true ]; then
 			fi
 			exit
 		fi
-		
+
 		if [[ $failedbyfirst = true ]]; then
 			arrtemp=()
 			for i in "${files[@]}"; do
@@ -457,13 +457,13 @@ if [ $excludeon = true ]; then
 			echo "Excluding file/directory $exc is $excludelen in size."
 			if [[ $logmode = true ]]; then
 				logat=$(date +"%m-%d-%y--%T")
-				echo -e "${logat}\t\tExcluding file/directory $exc is $excludelen in size." >> $logname 
+				echo -e "${logat}\t\tExcluding file/directory $exc is $excludelen in size." >> $logname
 			fi
 		fi
 	done
 fi
 
-title="Choose one of the following option" 
+title="Choose one of the following option"
 #printf "%*s\n" $(((${#title}+$COL)/2)) "$title"
 echo
 centerQ "$title"
@@ -529,7 +529,7 @@ else
 	echo -e "${lred}Invalid response!${nc}"
 	if [[ $logmode = true ]]; then
 		logat=$(date +"%m-%d-%y--%T")
-		echo -e "${logat}\t\tInvalid response!" >> $logname 
+		echo -e "${logat}\t\tInvalid response!" >> $logname
 	fi
 fi
 
@@ -542,7 +542,7 @@ if [[ $checkmd = "scan" ]]; then
 	else
 		echo "Creating md5sums..."
 	fi
-	
+
 	if [[ $logmode = true ]]; then
 		logat=$(date +"%m-%d-%y--%T")
 		if [[ $renamemode = true ]]; then
@@ -552,19 +552,19 @@ if [[ $checkmd = "scan" ]]; then
 		fi
 		echo >> $logname
 	fi
-	
+
 	filename="$filepath/md5sum$now.txt"
 	num=1;	i=0;	errorocc=0;		donesize=0
 #	declare -i totsize;	declare -i donesize
-#	totsize=`du -sb ${files[@] | cut -f1`;	
+#	totsize=`du -sb ${files[@] | cut -f1`;
 
 	if [[ ( $failedbyfirst = false && ${#excludefile[@]} > 1 ) || ( $failedbyfirst = true && ${#excludefile[@]} > 0 ) ]]; then
 #	elif [[ $failedbyfirst = true && ${#excludefile[@]} > 0 ]]; then
 		for j in "${excludefile[@]}"; do
-			echo "Skipping .... $j" 
+			echo "Skipping .... $j"
 			if [[ $logmode = true ]]; then
 				logat=$(date +"%m-%d-%y--%T")
-				echo -e "${logat}\t\tSkipping .... $j" >> $logname 
+				echo -e "${logat}\t\tSkipping .... $j" >> $logname
 				echo >> $logname
 			fi
 		done
@@ -579,7 +579,7 @@ if [[ $checkmd = "scan" ]]; then
 			echo -e "${lred}File $i does not exist!${nc}"
 			if [[ $logmode = true ]]; then
 				logat=$(date +"%m-%d-%y--%T")
-				echo -e "${logat}\t\tFile $i does not exist!" >> $logname 
+				echo -e "${logat}\t\tFile $i does not exist!" >> $logname
 			fi
 		fi
 	done
@@ -610,7 +610,7 @@ if [[ $checkmd = "scan" ]]; then
 				echo -e "\r${lred}Cancelled......${nc} @ ${percent}%\n\n"
 				if [[ $logmode = true ]]; then
 					logat=$(date +"%m-%d-%y--%T")
-					echo -e "${logat}\t\tCancelled......" >> $logname 
+					echo -e "${logat}\t\tCancelled......" >> $logname
 				fi
 				temptime2=`date +%s`
 				temptime=$(($temptime2 - $temptime))
@@ -621,7 +621,7 @@ if [[ $checkmd = "scan" ]]; then
 
 				if [[ $logmode = true ]]; then
 					logat=$(date +"%m-%d-%y--%T")
-					echo -e "${logat}\t\tResumed......" >> $logname 
+					echo -e "${logat}\t\tResumed......" >> $logname
 
 					if [[ $renamemode = true ]]; then
 						echo -e "${lred}Last renaming of ${files[$((num-1))]} is failed!........${nc} (Reason: Due to inturruption)"  2>&1 | tee -a $logname
@@ -633,11 +633,11 @@ if [[ $checkmd = "scan" ]]; then
 
 				else
 					if [[ $renamemode = true ]]; then
-						echo -e "${lred}Last renaming of ${files[$((num-1))]} is failed!........${nc} (Reason: Due to inturruption)"  
-						echo -e "${lcyan}Renaming last file........${nc}" 
+						echo -e "${lred}Last renaming of ${files[$((num-1))]} is failed!........${nc} (Reason: Due to inturruption)"
+						echo -e "${lcyan}Renaming last file........${nc}"
 					else
-						echo -e "${lred}Last md5sum calculation of ${files[$((num-1))]} is failed!........${nc} (Reason: Due to inturruption)"  
-						echo -e "${lcyan}Recalculating last md5sum........${nc}" 
+						echo -e "${lred}Last md5sum calculation of ${files[$((num-1))]} is failed!........${nc} (Reason: Due to inturruption)"
+						echo -e "${lcyan}Recalculating last md5sum........${nc}"
 					fi
 
 				fi
@@ -658,7 +658,7 @@ if [[ $checkmd = "scan" ]]; then
 			logat=$(date +"%m-%d-%y--%T")
 			echo -e "${logat}\t\tProcessing.... ${files[num-1]}" >> $logname
 		fi
-						
+
 		if [ -f ${files[num-1]} -a -r ${files[num-1]} ]; then
 			cursize=`du -sb ${files[num-1]} | cut -f1`
 			if [[ $renamemode = true ]]; then
@@ -698,7 +698,7 @@ if [[ $checkmd = "scan" ]]; then
 			echo -e "File ${files[num-1]} does not exist!"
 			if [[ $logmode = true ]]; then
 				logat=$(date +"%m-%d-%y--%T")
-				echo -e "${logat}\t\tFile ${files[num-1]} does not exist!" >> $logname 
+				echo -e "${logat}\t\tFile ${files[num-1]} does not exist!" >> $logname
 			fi
 			((errorocc++))
 			thisfilefailed=true
@@ -719,7 +719,7 @@ if [[ $checkmd = "scan" ]]; then
 		if [[ $logmode = true ]]; then
 			echo >> $logname
 		fi
-		
+
 		if [[ $thisfilefailed = true ]]; then
 			echo -e "\e[0K\r${lred}Processing of ${files[num-1]}${nc} failed!"
 			if [[ $logmode = true ]]; then
@@ -738,7 +738,7 @@ if [[ $checkmd = "scan" ]]; then
 	if [ "$canc" != "Y" ]; then
 #		echo -en "\e[1A";
 		if (( "$errorocc" > "0" )); then
-			echo -e "\e[0K\rTotal ${yellow}"$((num-errorocc))"${nc} of ${#files[@]} processed. ${lred}${errorocc} failed!${nc}" 
+			echo -e "\e[0K\rTotal ${yellow}"$((num-errorocc))"${nc} of ${#files[@]} processed. ${lred}${errorocc} failed!${nc}"
 		else
 			echo -e "\e[0K\rTotal $num of ${#files[@]} processed."
 		fi
@@ -760,7 +760,7 @@ if [[ $checkmd = "scan" ]]; then
 				logat=$(date +"%m-%d-%y--%T")
 				echo -e "${logat}\t\tGenerating grandmd5sum ...." >> $logname
 			fi
-		
+
 			($( find $filepath -type f \( -name "md5sum*.txt" \) -exec md5sum {} + > $filepath/grandmd5sum$now.txt ))
 		fi
 		#files=(`find $filepath -type f \( -regextype sed -not -regex ${regex} \) `)
@@ -897,7 +897,7 @@ elif [[ $checkmd = "check" ]]; then
 		    echo
 		done
 	else
-		echo "No files found for md5sum comparision."
+		echo "No files found for md5sum comparison."
 	fi
 #        error_exit "$LINENO: An error has occurred."
 	echo
